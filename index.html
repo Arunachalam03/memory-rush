@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Memory Rush</title>
+  <meta name="description" content="Watch the pattern, repeat it, beat your high score. Free, no install." />
+  <link rel="icon" href="icon.png" />
+  <link rel="apple-touch-icon" href="icon.png" />
+  <!-- Link preview (WhatsApp, Telegram, iMessage, etc.). __SITE_URL__ is filled in at deploy time. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Memory Rush - can you beat my score?" />
+  <meta property="og:description" content="Watch the pattern. Repeat it. Free to play, just tap the link." />
+  <meta property="og:url" content="__SITE_URL__" />
+  <meta property="og:image" content="__SITE_URL__og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <h1>Memory Rush</h1>
+    <p class="sub">Watch the pattern. Repeat it. Go as far as you can.</p>
+
+    <div class="hud" aria-live="polite">
+      <div><span id="round">0</span><small>Round</small></div>
+      <div><span id="score">0</span><small>Score</small></div>
+      <div><span id="best">0</span><small>Best</small></div>
+    </div>
+
+    <div id="board" class="board" role="group" aria-label="Game pads">
+      <button class="pad" data-pad="0" aria-label="Green pad"></button>
+      <button class="pad" data-pad="1" aria-label="Red pad"></button>
+      <button class="pad" data-pad="2" aria-label="Yellow pad"></button>
+      <button class="pad" data-pad="3" aria-label="Blue pad"></button>
+    </div>
+
+    <p id="message" class="message" aria-live="polite">Press Start</p>
+    <button id="start" class="primary">Start</button>
+    <button id="share" class="secondary">Share with friends</button>
+
+    <section id="results" class="results" hidden>
+      <h2>Your results</h2>
+      <ul>
+        <li>Rounds reached: <b id="r-rounds">0</b></li>
+        <li>Accuracy: <b id="r-acc">0</b>%</li>
+        <li>Avg reaction: <b id="r-avg">0</b> ms</li>
+        <li>Fastest: <b id="r-fast">0</b> ms</li>
+      </ul>
+      <p id="save-status" class="save-status" aria-live="polite"></p>
+      <button id="export" class="secondary">Download my history (CSV)</button>
+    </section>
+
+    <button id="privacy-open" class="link" hidden>Privacy &amp; data</button>
+  </main>
+
+  <!-- Consent: shown once, before the first game, only when data collection is configured -->
+  <div id="consent" class="modal" role="dialog" aria-modal="true" aria-labelledby="consent-title" hidden>
+    <div class="modal-card">
+      <h2 id="consent-title">Help with a quick study?</h2>
+      <p>This game records <b>how you play</b> (rounds, score, accuracy and reaction times) to study how people remember patterns.</p>
+      <ul>
+        <li><b>Anonymous:</b> a random ID. No name, email, phone or location.</li>
+        <li>Results go to a Google Sheet owned by the study organiser.</li>
+        <li>You can say no and still play. Nothing is sent.</li>
+        <li>Change your mind any time under &ldquo;Privacy &amp; data&rdquo;.</li>
+      </ul>
+      <div class="row">
+        <button id="consent-yes" class="primary">I agree</button>
+        <button id="consent-no" class="secondary">No thanks</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="privacy" class="modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" hidden>
+    <div class="modal-card">
+      <h2 id="privacy-title">Privacy &amp; data</h2>
+      <p id="privacy-status"></p>
+      <p class="small">Your anonymous ID: <code id="privacy-id">none</code><br />
+        To have your past results deleted, send this ID to the study organiser.</p>
+      <div class="row">
+        <button id="privacy-toggle" class="secondary"></button>
+        <button id="privacy-close" class="primary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="game.js"></script>
+  <script src="collector.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "memory-rush",
+  "version": "1.1.0",
+  "description": "Free, zero-backend memory game with consent-based anonymous data collection to Google Sheets. Share by link or QR code.",
+  "private": true,
+  "scripts": {
+    "test": "node --test test/game.test.js test/collector.test.js test/appsscript.test.js test/e2e.test.js test/smoke.test.js",
+    "start": "npx --yes serve@14 . -l 3000",
+    "set-endpoint": "node scripts/set-endpoint.js",
+    "qr": "npx --yes qrcode@1 -t utf8 \"$URL\""
+  },
+  "engines": { "node": ">=18" },
+  "license": "MIT"
+}
